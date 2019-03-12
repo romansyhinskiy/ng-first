@@ -1,0 +1,34 @@
+.sidebar{
+  list-style: none;
+  background-color: #24272f;
+  height: 100vh;
+}
+.panel-item{
+  color: #9c9c9c;
+  background-color: #24272f;
+  padding: 15px 20px;
+  &:hover{
+    transition: .3s ease-in;
+    background-color: rgba(47, 50, 58, 0.95);
+    color: #d3d3d3;
+    cursor: pointer;
+  }
+}
+.project-title{
+  color:  #24272f;
+  font-family: Helvetica;
+  text-align: center;
+  padding: 24px 15px;
+  background-color: dodgerblue;
+}
+.active{
+  background-color: dodgerblue;
+}
+a{
+    color: #9c9c9c;
+  &:hover{
+    text-decoration: none;
+    color: #d3d3d3;
+
+  }
+}
