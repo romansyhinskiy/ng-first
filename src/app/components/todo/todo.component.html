@@ -1,13 +1,16 @@
 <div class="container">
 <h1>My ToDo list</h1>
-<input type="text" placeholder="add ToDo" [(ngModel)]="todoTitle">
+<input type="text" class="form-control" placeholder="add ToDo" [(ngModel)]="todoTitle" (keyup.enter)="addTodo()" >
   <div class="row">
     <div class="col-6">
       <div class="todos-list" *ngFor="let todo of todos">
         <div class="todo-item d-flex align-items-center">
-          <input type="checkbox">
-          <span>{{ todo.title }}</span>
-          <i class="fas fa-times"></i>
+          <input type="checkbox" class="" ([ngModel])="todo.completed">
+          <span *ngIf="!todo.editing; else editingTodo" (click)="editTodo(todo)">{{ todo.title }}</span>
+          <ng-template #editingTodo>
+            <input type="text" class="form-control" [(ngModel)]="todo.title" (keyup.enter)="doneEditing(todo)" (blur)="doneEditing(todo)" autofocus>
+          </ng-template>
+          <i class="fas fa-times" (click)="deleteTodo(todo.id)"></i>
         </div>
       </div>
     </div>

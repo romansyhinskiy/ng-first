@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Todo} from "./todo";
+import {isBoolean} from "util";
 
 @Component({
   selector: 'mb-todo',
@@ -7,33 +9,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoComponent implements OnInit {
 
-  todos: object[];
+  todos: Todo[];
   todoTitle: string;
+  idForTodo: number;
 
   constructor() { }
 
   ngOnInit() {
-    todoTitle = '';
-    this.todos = [
-      {
-        'id' : 1,
-        'title' : 'My first Task',
-        'completed' : 'false',
-        'editing' : false
-      },
-      {
-        'id' : 2,
-        'title' : 'My Second Task',
-        'completed' : 'false',
-        'editing' : false
-      },
-      {
-        'id' : 3,
-        'title' : 'My Third Task',
-        'completed' : 'false',
-        'editing' : false
-      }
-    ]
+      idForTodo: 4;
+      this.todoTitle = '';
+      this.todos = [
+          {
+              'id': 1,
+              'title': 'First  fucking task',
+              'completed': false,
+              'editing': false
+          }
+      ];
   }
+
+    doneEditing(todo: Todo){
+        todo.editing = false;
+    }
+
+    editTodo(todo: Todo):void{
+        todo.editing = true;
+    }
+
+    addTodo():void{
+    if(this.todoTitle.trim().length === 0){
+      return;
+    }
+    this.todos.push({
+        id : this.idForTodo,
+        title : this.todoTitle,
+        completed : false,
+        editing : false
+    });
+    this.todoTitle = '';
+    this.idForTodo++;
+    }
+
+    deleteTodo( id:number ):void{
+    this.todos = this.todos.filter(todo => todo.id !== id);
+    }
+
+
+
 
 }
